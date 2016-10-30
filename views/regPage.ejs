@@ -1,0 +1,54 @@
+<% include header.ejs %>
+<form class="form-horizontal" method="post">
+    <fieldset>
+        <legend>用户注册</legend>
+        <div class="control-group">
+            <label class="control-label" for="user_id">帐号</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="user_id" name="user_id">
+                <p class="help-block">你的账户名称,用于登录。</p>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="user_name">姓名</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="user_name" name="user_name">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="user_role">职务</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="user_role" name="user_role">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="department">科室</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="department" name="department">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="user_phone">联系电话</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="user_phone" name="user_phone">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="user_pwd">口令</label>
+            <div class="controls">
+                <input type="password" class="input-xlarge" id="user_pwd" name="user_pwd">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="user_pwd_repeat">重复输入口令</label>
+            <div class="controls">
+                <input type="password" class="input-xlarge" id="user_pwd_repeat"
+                       name="user_pwd_repeat">
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">注册</button>
+        </div>
+    </fieldset>
+</form>
+<% include footer.ejs %>

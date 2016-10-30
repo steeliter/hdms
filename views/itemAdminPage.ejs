@@ -1,0 +1,68 @@
+<% include header.ejs %>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <!--选择框-->
+            <div class="tabbable" id="tab-sousuo">
+                <!--导航按钮-->
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#jiandansousuo" data-toggle="tab">简单搜索</a>
+                    </li>
+                    <li>
+                        <a href="#gaojisousuo" data-toggle="tab">高级搜索</a>
+                    </li>
+                </ul>
+                <!--分页内容-->
+                <div class="tab-content">
+                    <!--简单搜索-->
+                    <div class="tab-pane active" id="jiandansousuo">
+                        <form class="form-search">
+                            <input class="input-medium search-query" type="text">
+                            <button type="submit" class="btn" contenteditable="true">查找</button>
+                        </form>
+                    </div>
+                    <!--高级搜索-->
+                    <div class="tab-pane" id="gaojisousuo">
+                        <p>
+                            高级搜索框体.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--列表内容-->
+            <div class="row-fluid">
+                <div class="span12">
+                    <ol>
+                        <li>
+                            设备1
+                        </li>
+                        <li>
+                            设备2
+                        </li>
+                        <li>
+                            设备3
+                        </li>
+                        <li>
+                            设备4
+                        </li>
+                        <li>
+                            设备5
+                        </li>
+                        <li>
+                            设备6
+                        </li>
+                        <li>
+                            设备7
+                        </li>
+                        <li>
+                            设备8
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% include footer.ejs %>

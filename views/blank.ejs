@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap-responsive.css">
+    <title>动态创建表格</title>
+</head>
+
+<body>
+<input type="button" value="添加表格" onClick="updateTable()" >
+<input type="button" value="添加行">
+<div id="tableContainer"></div>
+<div id="createrow"></div>
+<div class="modal fade" id="itemModal" aria-hidden="true">
+get Something.
+</div>
+
+
+</body>
+<script type="text/javascript" src="javascripts/jquery/jquery.js"></script>
+<script type="text/javascript" src="javascripts/bootstrap/bootstrap.js"></script>
+<script type="text/javascript">
+    function createTable1(rowCount,cellCount)
+    {
+        var table=$("<table border=\"1\">");
+        table.appendTo($("#tableContainer"));
+        for(var i=0;i<rowCount;i++)
+        {
+            var tr=$("<tr></tr>");
+            tr.appendTo(table);
+            for(var j=0;j<cellCount;j++)
+            {
+                var td=$("<td>"+i*j+"</td>");
+                td.appendTo(tr);
+            }
+        }
+        $("#tableContainer").append("</table>");
+    }
+
+
+    function createTable(data){
+        if(data==undefined){
+            return;
+        }
+
+        var table=$("<table class='table-hover table-bordered'>");
+        table.appendTo($("#tableContainer"));
+
+        if(Object.prototype.toString.call(data)=="[object Array]"){
+            table.append(getPropRow(data[0]));
+            for(var i=0;i<data.length;i++){
+                table.append(getValueRow(data[i]));
+            }
+        }else{
+            table.append(getPropRow(data));
+            table.append(getValueRow(data));
+        }
+        $("#tableContainer").append("</table>");
+
+
+        function getPropRow(data){
+            var tr = $("<tr></tr>");
+            for(var p in data){
+                var td = $("<td>"+p+"</td>");
+                td.appendTo(tr);
+            }
+            return tr;
+        }
+
+
+        function getValueRow(data){
+            var tr = $("<tr data-target='#itemModal' onclick='updateModal(1)' data-toggle='modal' data-trigger='a'></tr>");
+            for(var p in data){
+                var td=$("<td>"+data[p]+"</td>");
+                td.appendTo(tr);
+            }
+            return tr;
+        }
+    }
+
+    function getSingleData(){
+        var data = {a:'a0',b:'b0',c:'c0'};
+        return function(){
+            return data;
+        }
+    }
+
+    function getDataArray(){
+        var data = [
+            {a:'a1',b:'b1',c:'c1'},
+            {a:'a1',b:'b1',c:'c1'},
+            {a:'a1',b:'b1',c:'c1'}
+        ];
+        return function(){
+            return data;
+        }
+    }
+
+    function updateTable(){
+        $.ajax({
+            type:'get',
+            url:'items/sample',
+            data:'',
+            error:function(){
+                alert('ajax error occurs');
+            },
+            success:function(data){
+                $('#tableContainer').empty();
+                createTable(data);
+            }
+        });
+    }
+
+    function updateModal(id){
+        $("#itemModal").empty();
+
+        $.ajax({
+            type:'get',
+            url:'items/get',
+            success:function(data){
+                $("#itemModal").append($("<div>total: " + data.length + " items</div>"));
+                $("#itemModal").append($("<button class='btn'>OK</button>"));
+                $("#itemModal").append($("<button class='btn'>Cancel</button>"));
+            }
+        });
+    }
+
+
+</script>
+</html>

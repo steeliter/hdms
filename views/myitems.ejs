@@ -1,0 +1,151 @@
+<html>
+<head>
+    <link rel="stylesheet" href="stylesheets/bootstrap.css" />
+    <link rel="stylesheet" href="stylesheets/bootstrap-responsive.css">
+</head>
+<body>
+<button onclick="ajaxUpdate()">Baidu!</button>
+<div id="search-container" class="">
+    <text for="searchText" class=''>开始搜索</text>
+    <input  id='searchText' type="text" class="input-lg"/>
+    <button class="btn btn-primary btn-lg">简单搜索</button>
+    <button class="btn btn-primary btn-lg"
+            data-toggle="modal"
+            data-target="#myModal">高级搜索</button>
+</div>
+
+
+
+<!--show list-->
+<div id="itemList" class="list-group" contenteditable="true">
+    <div class="list-group-item" data-toggle="">1</div>
+    <div class="list-group-item">2</div>
+    <div class="list-group-item">3</div>
+    <div class="list-group-item">4</div>
+    <div class="list-group-item">5</div>
+</div>
+
+
+<!--分页-->
+<div class="pagination">
+    <ul>
+        <li><a href="#">Prev</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">Next</a></li>
+    </ul>
+</div>
+
+<!--搜索模态窗口-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    高级搜索
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p>名称<a href="">X</a></p>
+                <button>位置</button>
+                <button>档案号</button>
+                <button>价格</button>
+                <ul>
+                    <li data-toggle="modal"
+                        data-target="#selectModal"><button>添加</button></li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">取消
+                </button>
+                <button type="button" class="btn btn-primary">
+                    开始搜索
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!--条件模态框-->
+<div class="modal fade" id="selectModal" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="selectModalLabel">
+                    添加选择条件
+                </h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">取消
+                </button>
+                <button type="button" class="btn btn-primary">
+                    确认添加
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!--Scripts-->
+<script type="text/javascript" src="javascripts/jquery/jquery.js"></script>
+<script type="text/javascript" src="javascripts/bootstrap/bootstrap.js"></script>
+<script type="text/javascript">
+    function ajaxBaidu(){
+        $.ajax({
+            url:'http://www.baidu.com',
+            type:'get',
+            data:'',
+            async:true,
+            error:function(){
+                alert('error');
+            },
+            success:function(data){
+                alert(data);
+            }
+        });
+    }
+    function ajaxUpdate(){
+        $.ajax({
+            url:'items/get',
+            type:'get',
+            data:'',
+            async:true,
+            error:function(){
+                alert('error');
+            },
+            success:function(data){
+                showItemData(data);
+            }
+        });
+    }
+    function showItemData(data){
+        alert(data.length);
+    }
+
+    function showItemData1(data){
+
+    }
+
+
+</script>
+</body>
+</html>
+
